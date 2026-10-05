@@ -3,17 +3,22 @@ import './globals.css';
 import Link from 'next/link';
 import {
   LayoutDashboard,
-  BarChart3,
+  SlidersHorizontal,
+  Activity,
   Share2,
   Megaphone,
   MessageSquare,
   Users,
   Calendar,
   Sparkles,
-  FileText,
   Radio,
   Settings,
-  ShieldCheck,
+  Search,
+  Bell,
+  HelpCircle,
+  MoreVertical,
+  ChevronDown,
+  Menu,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -21,16 +26,17 @@ export const metadata: Metadata = {
   description: 'Enterprise AI marketing and customer conversion intelligence platform',
 };
 
-const navigation = [
-  { name: 'Overview', href: '/', icon: LayoutDashboard },
-  { name: 'Analytics', href: '/analytics', icon: BarChart3 },
-  { name: 'Social', href: '/social', icon: Share2 },
-  { name: 'Ads', href: '/ads', icon: Megaphone },
+const reportLinks = [
+  { name: 'Realtime', href: '/', icon: Activity },
+  { name: 'Social Analytics', href: '/social', icon: Share2 },
+  { name: 'Google Ads', href: '/ads', icon: Megaphone },
   { name: 'WhatsApp', href: '/whatsapp', icon: MessageSquare },
-  { name: 'Leads', href: '/leads', icon: Users },
+  { name: 'Leads & CRM', href: '/leads', icon: Users },
   { name: 'Bookings', href: '/bookings', icon: Calendar },
   { name: 'AI Insights', href: '/insights', icon: Sparkles },
-  { name: 'Reports', href: '/reports', icon: FileText },
+];
+
+const generalLinks = [
   { name: 'Connections', href: '/connections', icon: Radio },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];
@@ -41,63 +47,148 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="flex min-h-screen bg-[#090d16] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
-        {/* Sidebar */}
-        <aside className="w-64 border-r border-[#1e293b] bg-[#0c1220] flex flex-col shrink-0">
-          <div className="h-16 flex items-center px-6 border-b border-[#1e293b] gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
-              L7
-            </div>
-            <div>
-              <span className="font-semibold text-white tracking-tight block text-sm">LeadAgent7</span>
-              <span className="text-[10px] text-blue-400 font-medium tracking-wide uppercase">Intelligence</span>
-            </div>
+    <html lang="en">
+      <body className="flex min-h-screen bg-[#f3f6fb] text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+        {/* Left Sidebar */}
+        <aside className="w-64 bg-white border-r border-[#e7eef7] flex flex-col shrink-0 min-h-screen">
+          {/* Logo Brand Header */}
+          <div className="h-18 flex items-center px-6 gap-3 py-5">
+            <Menu className="w-5 h-5 text-slate-600 cursor-pointer hover:text-slate-900" />
+            <Link href="/" className="flex items-center gap-1.5 font-bold text-xl tracking-tight text-slate-900">
+              <span>leadagent7</span>
+              <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+            </Link>
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center gap-3 px-3 py-2 text-xs font-medium rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
-                >
-                  <Icon className="w-4 h-4 text-slate-400" />
-                  {item.name}
-                </Link>
-              );
-            })}
+          <nav className="flex-1 px-4 py-2 space-y-6 overflow-y-auto">
+            {/* Main Section */}
+            <div className="space-y-1">
+              <Link
+                href="/"
+                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold text-xs text-blue-600 bg-blue-50/80 hover:bg-blue-100/70 transition-colors"
+              >
+                <LayoutDashboard className="w-4 h-4 text-blue-600" />
+                <span>Dashboard</span>
+              </Link>
+              <Link
+                href="/settings"
+                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+              >
+                <SlidersHorizontal className="w-4 h-4 text-slate-400" />
+                <span>Customization</span>
+              </Link>
+            </div>
+
+            {/* REPORTS */}
+            <div>
+              <p className="px-3.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                REPORTS
+              </p>
+              <div className="space-y-1">
+                {reportLinks.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+                    >
+                      <Icon className="w-4 h-4 text-slate-400" />
+                      <span>{item.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* GENERAL */}
+            <div>
+              <p className="px-3.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                GENERAL
+              </p>
+              <div className="space-y-1">
+                {generalLinks.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+                    >
+                      <Icon className="w-4 h-4 text-slate-400" />
+                      <span>{item.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
           </nav>
 
-          {/* Supabase & RLS Health Footer */}
-          <div className="p-4 border-t border-[#1e293b] bg-[#0a0f1d]">
-            <div className="flex items-center gap-2 text-xs text-emerald-400 font-medium">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Multi-Tenant RLS Active</span>
+          {/* Bottom Card: My Calendar Widget */}
+          <div className="p-4 m-3 rounded-2xl bg-gradient-to-tr from-blue-700 to-blue-600 text-white shadow-lg shadow-blue-500/20">
+            <div className="flex items-center gap-2.5 mb-2">
+              <div className="p-2 rounded-xl bg-white/20 backdrop-blur">
+                <Calendar className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold leading-tight">My Calendar</h4>
+                <p className="text-[10px] text-blue-100 font-medium">UPCOMING BOOKINGS</p>
+              </div>
             </div>
-            <p className="text-[10px] text-slate-400 mt-1">Supabase DB Connected</p>
+            <Link
+              href="/bookings"
+              className="mt-3 block text-center w-full py-1.5 px-3 rounded-xl bg-white text-blue-700 text-[11px] font-bold hover:bg-blue-50 transition-colors shadow-sm"
+            >
+              + SCHEDULE BOOKING
+            </Link>
           </div>
         </aside>
 
-        {/* Main Content Area */}
+        {/* Right Main Container */}
         <div className="flex-1 flex flex-col min-w-0">
-          <header className="h-16 border-b border-[#1e293b] bg-[#0c1220]/80 backdrop-blur px-8 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <h1 className="text-sm font-semibold text-white">Production Portal</h1>
-              <span className="px-2 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">
-                Milestones 1 & 2 Live
-              </span>
+          {/* Top Header */}
+          <header className="h-18 bg-white border-b border-[#e7eef7] px-8 flex items-center justify-between shrink-0">
+            {/* Search Bar */}
+            <div className="relative w-80 max-w-md">
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Use ⌘+K to Search a keyword..."
+                className="w-full bg-[#f3f6fb] border border-transparent rounded-full pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:bg-white transition-all"
+              />
             </div>
-            <div className="flex items-center gap-3 text-xs text-slate-300">
-              <div className="px-2.5 py-1 bg-slate-800 border border-slate-700 rounded-md">
-                Organization: <span className="text-white font-medium">Primary Tenant</span>
+
+            {/* Header Right Icons & Profile */}
+            <div className="flex items-center gap-4">
+              <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
+                <MoreVertical className="w-4 h-4" />
+              </button>
+              <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 relative transition-colors">
+                <Bell className="w-4 h-4" />
+                <span className="w-2 h-2 rounded-full bg-blue-600 absolute top-1.5 right-1.5 ring-2 ring-white"></span>
+              </button>
+              <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
+                <HelpCircle className="w-4 h-4" />
+              </button>
+
+              {/* Profile Pill */}
+              <div className="flex items-center gap-2.5 pl-2 border-l border-slate-200">
+                <div className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shadow-sm">
+                  LA
+                </div>
+                <div className="text-left hidden sm:block">
+                  <div className="text-xs font-semibold text-slate-900 leading-none flex items-center gap-1">
+                    <span>Admin</span>
+                    <ChevronDown className="w-3 h-3 text-slate-400" />
+                  </div>
+                  <span className="text-[10px] text-slate-400 font-medium">Team Account</span>
+                </div>
               </div>
             </div>
           </header>
 
+          {/* Page Content */}
           <main className="flex-1 p-8 overflow-y-auto">
             {children}
           </main>

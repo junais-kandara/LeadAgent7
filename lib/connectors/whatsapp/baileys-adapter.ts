@@ -113,7 +113,7 @@ export class BaileysAdapter implements WhatsAppBridgeAdapter {
     const supabase = createAdminClient();
 
     // Determine target organization
-    let orgId = payload.organizationId;
+    let orgId: string = payload.organizationId || '';
     if (!orgId) {
       // Default to first active organization in database
       const { data: org } = await supabase.from('organizations').select('id').limit(1).single();

@@ -9,13 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#090d16',
-        card: '#101726',
-        border: '#1f293d',
-        accent: '#3b82f6',
-        success: '#10b981',
-        warning: '#f59e0b',
-        danger: '#ef4444',
+        background: '#f3f6fb',
+        card: '#ffffff',
+        border: '#e7eef7',
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+        },
+      },
+      borderRadius: {
+        '2xl': '1rem',
+        '3xl': '1.5rem',
       },
     },
   },
