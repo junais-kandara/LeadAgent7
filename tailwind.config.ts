@@ -9,20 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#f3f6fb',
-        card: '#ffffff',
-        border: '#e7eef7',
-        primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
+        odoo: {
+          primary: '#714B67',
+          dark: '#58364F',
+          teal: '#017E84',
+          'teal-dark': '#006166',
+          amber: '#E59324',
+          bg: '#F8F9FA',
+          border: '#E2E8F0',
         },
-      },
-      borderRadius: {
-        '2xl': '1rem',
-        '3xl': '1.5rem',
       },
     },
   },

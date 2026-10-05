@@ -2,43 +2,31 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
 import {
-  LayoutDashboard,
-  SlidersHorizontal,
-  Activity,
-  Share2,
-  Megaphone,
-  MessageSquare,
-  Users,
-  Calendar,
-  Sparkles,
-  Radio,
-  Settings,
+  LayoutGrid,
   Search,
   Bell,
-  HelpCircle,
-  MoreVertical,
+  Clock,
+  MessageSquare,
+  Building2,
   ChevronDown,
-  Menu,
+  Sparkles,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'LeadAgent7 | AI Marketing, Lead & Conversion Intelligence',
-  description: 'Enterprise AI marketing and customer conversion intelligence platform',
+  title: 'LeadAgent7 | Odoo-Style Enterprise CRM & Marketing Intelligence',
+  description: 'Enterprise AI Marketing, Leads, WhatsApp & Conversion Intelligence Platform',
 };
 
-const reportLinks = [
-  { name: 'Realtime', href: '/', icon: Activity },
-  { name: 'Social Analytics', href: '/social', icon: Share2 },
-  { name: 'Google Ads', href: '/ads', icon: Megaphone },
-  { name: 'WhatsApp', href: '/whatsapp', icon: MessageSquare },
-  { name: 'Leads & CRM', href: '/leads', icon: Users },
-  { name: 'Bookings', href: '/bookings', icon: Calendar },
-  { name: 'AI Insights', href: '/insights', icon: Sparkles },
-];
-
-const generalLinks = [
-  { name: 'Connections', href: '/connections', icon: Radio },
-  { name: 'Settings', href: '/settings', icon: Settings },
+const odooTabs = [
+  { name: 'Dashboard', href: '/' },
+  { name: 'Leads & CRM', href: '/leads' },
+  { name: 'WhatsApp Chats', href: '/whatsapp' },
+  { name: 'Social Media', href: '/social' },
+  { name: 'Google Ads', href: '/ads' },
+  { name: 'Bookings Calendar', href: '/bookings' },
+  { name: 'AI Insights', href: '/insights' },
+  { name: 'Reporting', href: '/analytics' },
+  { name: 'Configuration', href: '/connections' },
 ];
 
 export default function RootLayout({
@@ -48,150 +36,94 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen bg-[#f3f6fb] text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
-        {/* Left Sidebar */}
-        <aside className="w-64 bg-white border-r border-[#e7eef7] flex flex-col shrink-0 min-h-screen">
-          {/* Logo Brand Header */}
-          <div className="h-18 flex items-center px-6 gap-3 py-5">
-            <Menu className="w-5 h-5 text-slate-600 cursor-pointer hover:text-slate-900" />
-            <Link href="/" className="flex items-center gap-1.5 font-bold text-xl tracking-tight text-slate-900">
-              <span>leadagent7</span>
-              <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-            </Link>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="flex-1 px-4 py-2 space-y-6 overflow-y-auto">
-            {/* Main Section */}
-            <div className="space-y-1">
-              <Link
-                href="/"
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold text-xs text-blue-600 bg-blue-50/80 hover:bg-blue-100/70 transition-colors"
-              >
-                <LayoutDashboard className="w-4 h-4 text-blue-600" />
-                <span>Dashboard</span>
-              </Link>
-              <Link
-                href="/settings"
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-              >
-                <SlidersHorizontal className="w-4 h-4 text-slate-400" />
-                <span>Customization</span>
-              </Link>
-            </div>
-
-            {/* REPORTS */}
-            <div>
-              <p className="px-3.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                REPORTS
-              </p>
-              <div className="space-y-1">
-                {reportLinks.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                    >
-                      <Icon className="w-4 h-4 text-slate-400" />
-                      <span>{item.name}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* GENERAL */}
-            <div>
-              <p className="px-3.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                GENERAL
-              </p>
-              <div className="space-y-1">
-                {generalLinks.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                    >
-                      <Icon className="w-4 h-4 text-slate-400" />
-                      <span>{item.name}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </nav>
-
-          {/* Bottom Card: My Calendar Widget */}
-          <div className="p-4 m-3 rounded-2xl bg-gradient-to-tr from-blue-700 to-blue-600 text-white shadow-lg shadow-blue-500/20">
-            <div className="flex items-center gap-2.5 mb-2">
-              <div className="p-2 rounded-xl bg-white/20 backdrop-blur">
-                <Calendar className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <h4 className="text-xs font-bold leading-tight">My Calendar</h4>
-                <p className="text-[10px] text-blue-100 font-medium">UPCOMING BOOKINGS</p>
-              </div>
-            </div>
-            <Link
-              href="/bookings"
-              className="mt-3 block text-center w-full py-1.5 px-3 rounded-xl bg-white text-blue-700 text-[11px] font-bold hover:bg-blue-50 transition-colors shadow-sm"
+      <body className="min-h-screen bg-[#F8F9FA] text-slate-800 antialiased flex flex-col font-sans">
+        {/* Signature Odoo Top App Bar */}
+        <header className="h-12 bg-[#714B67] text-white flex items-center justify-between px-4 shrink-0 shadow-sm z-50 select-none">
+          {/* Left: Odoo App Launcher & Main Menu Tabs */}
+          <div className="flex items-center gap-4 h-full">
+            {/* Odoo Waffle Icon */}
+            <button
+              title="Odoo Apps"
+              className="p-1.5 rounded hover:bg-black/20 text-white/90 hover:text-white transition-colors"
             >
-              + SCHEDULE BOOKING
+              <LayoutGrid className="w-5 h-5" />
+            </button>
+
+            {/* App Brand Name */}
+            <Link
+              href="/"
+              className="font-bold text-base tracking-tight text-white flex items-center gap-1.5 mr-2"
+            >
+              <span className="bg-white/20 px-1.5 py-0.5 rounded text-xs font-black tracking-wider uppercase text-white">
+                LA7
+              </span>
+              <span>LeadAgent7</span>
             </Link>
+
+            {/* Odoo Horizontal Navigation Tabs */}
+            <nav className="hidden lg:flex items-center h-full space-x-0.5">
+              {odooTabs.map((tab) => (
+                <Link
+                  key={tab.name}
+                  href={tab.href}
+                  className="px-3 h-full flex items-center text-xs font-medium text-white/85 hover:text-white hover:bg-black/15 transition-colors border-b-2 border-transparent hover:border-white/40"
+                >
+                  {tab.name}
+                </Link>
+              ))}
+            </nav>
           </div>
-        </aside>
 
-        {/* Right Main Container */}
-        <div className="flex-1 flex flex-col min-w-0">
-          {/* Top Header */}
-          <header className="h-18 bg-white border-b border-[#e7eef7] px-8 flex items-center justify-between shrink-0">
-            {/* Search Bar */}
-            <div className="relative w-80 max-w-md">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Use ⌘+K to Search a keyword..."
-                className="w-full bg-[#f3f6fb] border border-transparent rounded-full pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:bg-white transition-all"
-              />
+          {/* Right: Odoo Enterprise Utilities & User Profile */}
+          <div className="flex items-center gap-3">
+            {/* AI Assistant Quick Pill */}
+            <Link
+              href="/insights"
+              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#017E84] hover:bg-[#006A70] text-white text-[11px] font-semibold shadow-xs transition-colors"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>AI Intelligence</span>
+            </Link>
+
+            {/* Activities Clock Icon */}
+            <button
+              title="Activities"
+              className="p-1.5 rounded hover:bg-black/20 text-white/90 hover:text-white relative transition-colors"
+            >
+              <Clock className="w-4 h-4" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400 absolute top-1 right-1 ring-1 ring-[#714B67]"></span>
+            </button>
+
+            {/* Conversations Bubble */}
+            <Link
+              href="/whatsapp"
+              title="Conversations"
+              className="p-1.5 rounded hover:bg-black/20 text-white/90 hover:text-white relative transition-colors"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span className="w-2 h-2 rounded-full bg-amber-400 absolute top-1 right-1 ring-1 ring-[#714B67]"></span>
+            </Link>
+
+            {/* Company / Multi-Tenant Selector */}
+            <div className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded hover:bg-black/15 text-xs text-white/90 font-medium cursor-pointer transition-colors">
+              <Building2 className="w-3.5 h-3.5 text-white/70" />
+              <span>Skyletic HQ</span>
+              <ChevronDown className="w-3 h-3 text-white/60" />
             </div>
 
-            {/* Header Right Icons & Profile */}
-            <div className="flex items-center gap-4">
-              <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
-                <MoreVertical className="w-4 h-4" />
-              </button>
-              <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 relative transition-colors">
-                <Bell className="w-4 h-4" />
-                <span className="w-2 h-2 rounded-full bg-blue-600 absolute top-1.5 right-1.5 ring-2 ring-white"></span>
-              </button>
-              <button className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
-                <HelpCircle className="w-4 h-4" />
-              </button>
-
-              {/* Profile Pill */}
-              <div className="flex items-center gap-2.5 pl-2 border-l border-slate-200">
-                <div className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shadow-sm">
-                  LA
-                </div>
-                <div className="text-left hidden sm:block">
-                  <div className="text-xs font-semibold text-slate-900 leading-none flex items-center gap-1">
-                    <span>Admin</span>
-                    <ChevronDown className="w-3 h-3 text-slate-400" />
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-medium">Team Account</span>
-                </div>
+            {/* User Profile Avatar */}
+            <div className="flex items-center gap-2 pl-2 border-l border-white/20">
+              <div className="w-7 h-7 rounded-full bg-white/20 text-white text-xs font-bold flex items-center justify-center border border-white/30">
+                A
               </div>
+              <span className="text-xs font-medium text-white/90 hidden xl:inline">Admin User</span>
             </div>
-          </header>
+          </div>
+        </header>
 
-          {/* Page Content */}
-          <main className="flex-1 p-8 overflow-y-auto">
-            {children}
-          </main>
+        {/* Workspace Canvas */}
+        <div className="flex-1 flex flex-col min-w-0">
+          {children}
         </div>
       </body>
     </html>

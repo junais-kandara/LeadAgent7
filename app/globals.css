@@ -3,33 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --background: #f3f6fb;
-  --foreground: #1e293b;
-  --card: #ffffff;
-  --sidebar: #ffffff;
-  --border: #e6edf5;
+  --odoo-primary: #714B67;
+  --odoo-primary-dark: #5c3b53;
+  --odoo-teal: #017E84;
+  --odoo-teal-light: #E6F4EA;
+  --odoo-bg: #F9FAFB;
+  --odoo-card: #FFFFFF;
+  --odoo-border: #E2E8F0;
 }
 
 body {
-  color: #1e293b;
-  background-color: #f3f6fb;
+  color: #1E293B;
+  background-color: #F8F9FA;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom sleek scrollbar */
+/* Odoo sleek scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #94A3B8;
 }
