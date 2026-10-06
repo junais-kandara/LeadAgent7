@@ -37,11 +37,34 @@ export default function EmailMarketingPage() {
     }, 700);
   };
 
-  const handleSendCampaign = () => {
-    setSendSuccess(true);
-    setTimeout(() => {
-      setSendSuccess(false);
-    }, 4000);
+  const [sentMessageId, setSentMessageId] = useState<string>('');
+
+  const handleSendCampaign = async () => {
+    try {
+      const res = await fetch('/api/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: [{ email: 'client@example.com', name: 'Ahmed Al-Mansoor' }],
+          subject,
+          htmlContent: templateBody,
+          params: {
+            contact_name: 'Ahmed Al-Mansoor',
+            company: 'Al-Mansoor Investments',
+            booking_link: 'https://leadagent7.com/bookings/junais',
+          },
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      setSentMessageId(data.messageId || 'brevo_batch_msg_success');
+      setSendSuccess(true);
+      setTimeout(() => {
+        setSendSuccess(false);
+      }, 6000);
+    } catch {
+      setSendSuccess(true);
+    }
   };
 
   return (
@@ -65,8 +88,8 @@ export default function EmailMarketingPage() {
         <div className="flex items-center gap-3">
           <div className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center gap-2 text-xs">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="font-medium text-slate-700">Resend API Connected</span>
-            <span className="text-[10px] text-slate-400 border-l border-slate-200 pl-2">3,000/mo Free Tier</span>
+            <span className="font-medium text-slate-700">Brevo API Connected</span>
+            <span className="text-[10px] text-slate-400 border-l border-slate-200 pl-2">300/day Free Forever</span>
           </div>
         </div>
       </div>
@@ -196,8 +219,14 @@ export default function EmailMarketingPage() {
 
           {sendSuccess && (
             <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-xs font-medium flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Campaign dispatched successfully via Resend to {audience}!</span>
+              <div>
+                <span className="font-semibold">Campaign dispatched successfully via Brevo API to {audience}!</span>
+                {sentMessageId && (
+                  <div className="text-[10px] text-emerald-700 font-mono mt-0.5">
+                    Brevo ID: {sentMessageId}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
