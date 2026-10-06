@@ -5,8 +5,11 @@ import {
   BaileysWebhookPayload,
   WhatsAppBridgeAdapter,
   WhatsAppBridgeHealth,
+  BroadcastOptions,
+  BroadcastJobResult,
 } from './types';
 import { getWhatsAppConfig } from './config';
+import { WhatsAppBroadcastDispatcher } from './broadcast-dispatcher';
 
 const INTENT_KEYWORDS = [
   'price',
@@ -272,7 +275,10 @@ export class BaileysAdapter implements WhatsAppBridgeAdapter {
   }
 
   /**
-   * Sends an outbound message through the Baileys bridge API.
+   * Sends an outbound 1-on-1 message immediately (Zero-Jitter Delay).
+   *
+   * Intended for interactive AI chat, automated bot replies, and direct customer interactions
+   * where sub-second latency is critical. Does NOT apply randomized jitter.
    */
   public async sendMessage(
     organizationId: string,
@@ -342,5 +348,17 @@ export class BaileysAdapter implements WhatsAppBridgeAdapter {
       .eq('id', conversationId);
 
     return { success: true, messageId };
+  }
+
+  /**
+   * Sends a bulk broadcast to multiple recipients with ENFORCED Randomized Delay (Jitter).
+   *
+   * Unlike 1-on-1 AI chat (which sends immediately), broadcast messages wait a randomized
+   * delay between minJitterMs (default 8,000ms) and maxJitterMs (default 18,000ms) between
+   * consecutive recipients to prevent account bans and mimic human sending cadence.
+   */
+  public async sendBroadcast(options: BroadcastOptions): Promise<BroadcastJobResult> {
+    const dispatcher = new WhatsAppBroadcastDispatcher(this);
+    return dispatcher.dispatchBroadcast(options);
   }
 }

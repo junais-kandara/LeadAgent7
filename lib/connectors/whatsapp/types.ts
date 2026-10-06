@@ -60,3 +60,59 @@ export interface WhatsAppBridgeAdapter {
     text: string
   ): Promise<{ success: boolean; messageId: string }>;
 }
+
+export interface BroadcastRecipient {
+  phone: string;
+  contactName?: string;
+  leadId?: string;
+  isOptedOut?: boolean;
+  customVariables?: Record<string, string>;
+}
+
+export interface BroadcastOptions {
+  organizationId: string;
+  templateText: string;
+  recipients: BroadcastRecipient[];
+  /**
+   * Minimum jitter delay in milliseconds between broadcast messages.
+   * Default: 8,000ms (8 seconds) to prevent WhatsApp anti-spam bans.
+   */
+  minJitterMs?: number;
+  /**
+   * Maximum jitter delay in milliseconds between broadcast messages.
+   * Default: 18,000ms (18 seconds).
+   */
+  maxJitterMs?: number;
+  /**
+   * Optional custom delay function (useful for tests or custom schedulers).
+   */
+  sleepFn?: (ms: number) => Promise<void>;
+  /**
+   * Progress callback invoked after each recipient attempt.
+   */
+  onProgress?: (progress: BroadcastProgress) => void | Promise<void>;
+  /**
+   * AbortSignal to stop an ongoing broadcast queue.
+   */
+  signal?: AbortSignal;
+}
+
+export interface BroadcastProgress {
+  currentIndex: number;
+  totalRecipients: number;
+  recipientPhone: string;
+  status: 'sent' | 'skipped_optout' | 'failed';
+  messageId?: string;
+  jitterDelayMsApplied: number;
+  error?: string;
+}
+
+export interface BroadcastJobResult {
+  total: number;
+  sentCount: number;
+  skippedCount: number;
+  failedCount: number;
+  durationMs: number;
+  averageJitterMs: number;
+}
+
