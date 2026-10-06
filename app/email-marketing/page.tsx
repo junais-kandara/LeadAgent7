@@ -51,7 +51,7 @@ export default function EmailMarketingPage() {
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-600 mb-1">
             <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-            Module 6: Email Marketing
+            Email Marketing
           </div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
             Email Campaign Studio & AI Copywriter

@@ -106,7 +106,7 @@ export default function CampaignSchedulerPage() {
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-orange-600 mb-1">
             <span className="w-2 h-2 rounded-full bg-orange-500"></span>
-            Module 5: Campaign Scheduler
+            Campaign Scheduler
           </div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
             Multi-Channel Broadcast & Jitter Scheduler

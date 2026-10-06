@@ -11,7 +11,7 @@ import {
   LogOut,
 } from 'lucide-react';
 
-const MODULE_NAMES: Record<string, string> = {
+const APP_TITLES: Record<string, string> = {
   '/dashboard': 'Dashboard',
   '/whatsapp': 'WhatsApp',
   '/crm': 'CRM Pipeline',
@@ -32,7 +32,7 @@ export default function AppHeader() {
     return null;
   }
 
-  const currentModuleName = MODULE_NAMES[pathname] || 'Workspace';
+  const currentAppTitle = APP_TITLES[pathname] || 'Workspace';
 
   return (
     <header className="h-12 bg-[#714B67] text-white flex items-center justify-between px-4 shrink-0 shadow-sm z-50 select-none">
@@ -57,11 +57,11 @@ export default function AppHeader() {
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-white/50" />
           <span className="font-semibold text-white/95 bg-white/10 px-2 py-0.5 rounded text-[11px]">
-            {currentModuleName}
+            {currentAppTitle}
           </span>
         </div>
 
-        {/* Quick Module Switcher Tabs */}
+        {/* Quick App Switcher Tabs */}
         <nav className="hidden xl:flex items-center space-x-1 ml-4 border-l border-white/20 pl-4">
           <Link
             href="/dashboard"

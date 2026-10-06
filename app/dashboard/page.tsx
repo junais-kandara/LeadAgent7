@@ -23,13 +23,13 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 mb-1">
             <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-            Module 1: Executive Dashboard
+            Executive Dashboard
           </div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
             Intelligence Overview & Platform Metrics
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Real-time pipeline analytics, cross-channel attribution, and quick module launchers.
+            Real-time pipeline analytics, cross-channel attribution, and quick launchers.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default function DashboardPage() {
       {/* Quick Launchers to Other 5 Modules */}
       <div className="mt-8">
         <h3 className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-3">
-          Quick Access Modules
+          Quick Access
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <Link

@@ -143,7 +143,7 @@ export default function LeadGenPage() {
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-600 mb-1">
             <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-            Module 4: Lead Gen & Ingestion
+            Lead Gen & Ingestion
           </div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
             Lead Generation & CSV Contact Importer
