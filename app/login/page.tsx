@@ -39,13 +39,6 @@ export default function LoginPage() {
             Enterprise Intelligence & CRM
           </div>
         </div>
-
-        {/* Bottom-Left: Signature Slogan from Image */}
-        <div className="relative z-10 pt-16 md:pt-0">
-          <div className="text-2xl md:text-3xl font-light tracking-wide text-white/95">
-            think tomorrow<span className="text-[#00C0F3] font-bold">today</span>
-          </div>
-        </div>
       </div>
 
       {/* Right Side: Clean White Sign-in Interface */}
